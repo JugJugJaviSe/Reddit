@@ -1,16 +1,12 @@
-import { useAuth } from "../../hooks/UseAuthHook";
+import { MainTab } from "../../components/tab/MainTab";
+import { DropdownMenu } from "../../components/tab/DropdownMenu";
+import { SideMenu } from "../../components/tab/SideMenu";
 
 export default function UserDashboard(){
 
-    const { logout } = useAuth();
-
-    const handleLogout = () => {
-        logout();
-    }
-
+    {/*bg-[#181c1f]*/}
     return(
-    <main>
-        <h1>Welcome to user dashboard!</h1>
-        <button onClick={handleLogout}>Log out</button>
+    <main className="min-h-screen flex flex-col items-center justify-center bg-black">
+        <MainTab dropdownMenu={DropdownMenu} sideMenu={SideMenu} ></MainTab>
     </main>);
 }

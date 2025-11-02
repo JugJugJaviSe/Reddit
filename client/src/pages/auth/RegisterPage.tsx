@@ -3,6 +3,8 @@ import type { IAuthAPIService } from "../../api_services/auth_api/IAuthAPIServic
 import { useAuth } from "../../hooks/UseAuthHook";
 import { useEffect } from "react";
 import { RegisterForm } from "../../components/auth/RegisterForm";
+import bgImage from "../../assets/loginBackground.png"
+import { MainTab } from "../../components/tab/MainTab";
 
 interface RegisterPageProps{
     authApi: IAuthAPIService;
@@ -19,7 +21,8 @@ export default function RegisterPage({authApi}: RegisterPageProps){
     },[isAuthenticated, navigate, user]);
 
     return(
-        <main>
+        <main className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center" style={{backgroundImage: `url(${bgImage})`}}>
+            <MainTab></MainTab>
             <RegisterForm authApi={authApi} />
         </main>
     );

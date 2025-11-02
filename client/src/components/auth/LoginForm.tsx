@@ -35,9 +35,10 @@ export function LoginForm({authApi}: AuthFormProps){
         }
     }
 
-    return(<div>
-        <h1>Login</h1>
-        <form onSubmit={applyLoginForm}>
+    return(<div className="h-96 w-70 flex items-center justify-center rounded-lg bg-[#181c1f] text-white p-6">
+        <div className="flex flex-col items-center justify-center gap-4">
+        <h1 className="text-xl font-bold mb-5 mt-5">Log In</h1>
+        <form onSubmit={applyLoginForm} className="flex flex-col items-center gap-4">
             <input
             type="text"
             placeholder="Username"
@@ -46,6 +47,7 @@ export function LoginForm({authApi}: AuthFormProps){
             max={20}
             required
             onChange={(e) => setUsername(e.target.value)}
+            className="mb-5 border border-gray-400 border-2 rounded-md p-2"
             ></input>
             <input
             type="password"
@@ -55,12 +57,14 @@ export function LoginForm({authApi}: AuthFormProps){
             max={20}
             required
             onChange={(e) => setPassword(e.target.value)}
+            className="mb-5 border border-gray-400 border-2 rounded-md p-2"
             ></input>
-            {errorMessage && (<p>{errorMessage}</p>)}
+            {errorMessage && (<p className="text-red-500">{errorMessage}</p>)}
 
-            <button type="submit">Login</button>
+            <button type="submit" className="bg-[#23272a] hover:bg-[#d93900] font-bold py-2 px-20 rounded">Log In</button>
 
-            <p>Don't have an account? <Link to="/register">Sign up</Link></p>
+            <p>Don't have an account? <Link to="/register" className="text-blue-500">Sign up</Link></p>
         </form>
+        </div>
     </div>);
 }

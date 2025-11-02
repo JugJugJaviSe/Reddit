@@ -41,9 +41,10 @@ export function RegisterForm({authApi}:AuthFormProps){
     };
 
     return(
-        <div>
-            <h1>Register</h1>
-            <form onSubmit={applyRegisterForm}>
+        <div className="h-96 w-70 flex items-center justify-center rounded-lg bg-[#181c1f] text-white p-6">
+            <div className="flex flex-col items-center justify-center gap-4">
+            <h1 className="text-xl font-bold mb-5 mt-5">Register</h1>
+            <form onSubmit={applyRegisterForm} className="flex flex-col items-center">
                 <input
                     type="text"
                     placeholder="Username"
@@ -52,6 +53,7 @@ export function RegisterForm({authApi}:AuthFormProps){
                     max={20}
                     required
                     onChange={(e) => setUsername(e.target.value)}
+                    className="mb-5 border border-gray-400 border-2 rounded-md p-2"
                 ></input>
                 <input
                     type="password"
@@ -61,6 +63,7 @@ export function RegisterForm({authApi}:AuthFormProps){
                     max={20}
                     required
                     onChange={(e) => setPassword(e.target.value)}
+                    className="mb-5 border border-gray-400 border-2 rounded-md p-2"
                 ></input>
                 <input
                     type="text"
@@ -70,15 +73,17 @@ export function RegisterForm({authApi}:AuthFormProps){
                     max={20}
                     required
                     onChange={(e) => setFullName(e.target.value)}
+                    className="mb-3 border border-gray-400 border-2 rounded-md p-2"
                 ></input>
 
-                {errorMessage && <p>{errorMessage}</p>}
+                {errorMessage && <p className="text-red-500">{errorMessage}</p>}
                 <button
-                    type="submit"
+                    type="submit" className="bg-[#23272a] hover:bg-[#d93900] font-bold py-2 px-20 rounded mt-2"
                 >Register</button>
             </form>
 
-            <p>Already have an account?{" "}<Link to={"/login"}>Login</Link></p>
+            <p>Already have an account?{" "}<Link to={"/login"} className="text-blue-500 mb-2">Login</Link></p>
+            </div>
         </div>
     );
 }

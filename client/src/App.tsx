@@ -4,6 +4,7 @@ import RegisterPage from "./pages/auth/RegisterPage";
 import LoginPage from "./pages/auth/LoginPage";
 import { ProtectedRoute } from "./components/protected_route/ProtectedRoute";
 import UserDashboard from "./pages/dashboard/UserDashboard";
+import UserProfile from "./pages/profile/UserProfilePage";
 
 const App = () => {
   return (
@@ -14,6 +15,11 @@ const App = () => {
       <Route
         path="/user-dashboard"
         element ={<ProtectedRoute requiredRole="user"><UserDashboard/></ProtectedRoute>}
+      ></Route>
+
+      <Route
+       path="/user-profile"
+       element = {<ProtectedRoute requiredRole="user"><UserProfile/></ProtectedRoute>}
       ></Route>
 
     </Routes>
