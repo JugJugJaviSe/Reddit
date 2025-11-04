@@ -3,7 +3,6 @@ import { User } from "../../Domain/models/User";
 import { IUserRepository } from "../../Domain/repositories/IUserRepository";
 import { IUserService } from "../../Domain/services/users/IUserService";
 
-
 export class UserService implements IUserService {
 
     public constructor(private userRepo: IUserRepository){}
