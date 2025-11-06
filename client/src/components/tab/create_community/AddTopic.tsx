@@ -6,17 +6,16 @@ import { LuCircleX } from "react-icons/lu";
 
 interface AddTopicProps{
     isOpen: boolean;
+    selectedTopics: TopicDto[];
+    setSelectedTopics: React.Dispatch<React.SetStateAction<TopicDto[]>>;
 }
 
-export default function AddTopic({isOpen}: AddTopicProps){
+export default function AddTopic({isOpen, selectedTopics, setSelectedTopics}: AddTopicProps){
 
     const [categories, setCategories] = useState<CategoryAPIResponse["data"]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [selectedTopics, setSelectedTopics] = useState<TopicDto[]>([]);
     const [filter, setFilter] = useState<string>("");
-
-    {/*selected topics proslediti gore negde*/}
 
     useEffect(() =>{
 
@@ -50,18 +49,20 @@ export default function AddTopic({isOpen}: AddTopicProps){
         <h2 className="text-xl font-bold mb-1">Add Topics</h2>
         <h4 className="mb-2">Add up to 3 topics to help interested redditors find your community.</h4>
 
+        <p>Selected topics {selectedTopics.length}/3</p>
+
         <input
             type="text"
             placeholder="Filter categories"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="border p-2 w-full mb-2 rounded max-w-120"
+            className="border p-2 w-full mb-2 mt-2 rounded max-w-120"
           />
 
         {loading && <p>Loading categories...</p>}
         {error && <p className="text-red-500">{error}</p>}
 
-        <div className="max-h-60 overflow-y-auto">
+        <div className="max-h-45 overflow-y-auto">
 
           {categories && categories.filter(cat => cat.name.toLowerCase().includes(filter.toLowerCase())).map(cat => (
             <div key={cat.categoryId} className="mb-1">
