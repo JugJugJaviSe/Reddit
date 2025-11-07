@@ -4,8 +4,9 @@ import AddTopic from "./AddTopic";
 import { CommunityType } from "./CommunityType";
 import NameAndDescription from "./NameAndDescription";
 import CommunityIcon from "./CommunityIcon";
-import { communityApi } from "../../../api_services/community_api/CategoryAPIService";
+import { communityApi } from "../../../api_services/community_api/CommunityAPIService";
 import type { CommunityDto } from "../../../models/CommunityDto";
+import { useNavigate } from "react-router-dom";
 
 interface Props{
     isOpen: boolean;
@@ -16,13 +17,14 @@ export default function CreateCommunityPopup({isOpen, setIsOpen}: Props){
 
     const [selectedTopics, setSelectedTopics] = useState<TopicDto[]>([]);
     const [currentComponent, setCurrentComponent] = useState<number>(0);
-    const [selected, setSelected] = useState<string>('public');
+    const [selected, setSelected] = useState<string>('Public');
     const [isMature, setIsMature] = useState<boolean>(false);
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [iconPath, setIconPath] = useState<string>("");
     const [iconFile, setIconFile] = useState<File | null>(null);
     const [isValid, setIsValid] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const currentComponentHandler = (next: boolean) => {
       if(next && currentComponent+1 < 4){
@@ -45,7 +47,14 @@ export default function CreateCommunityPopup({isOpen, setIsOpen}: Props){
       };
 
       const res = await communityApi.create(communityDto);
-      console.log(res);
+      if(res.success){
+        setIsOpen(false);
+        if(res.data){
+          //navigate(`/community/${res.data.communityId}`);
+          console.log(res.data.communityId);
+          console.log(res);
+        }
+      }
     };
 
     if(!isOpen){

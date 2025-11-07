@@ -13,9 +13,9 @@ interface CommunityTypeProps{
 
 export function CommunityType({selected, isMature, setSelected, setIsMature}: CommunityTypeProps) {
 
-    const communityTypes = [{type: 'public', icon: <IoMdGlobe />, description: "Anyone can view, post, and comment to this community"},
-                            {type: 'restricted', icon: <IoMdEye />, description: "Anyone can view, but only approved users can contribute"},
-                            {type: 'private', icon: <CiLock />, description: "Only approved users can view and contribute"}];
+    const communityTypes = [{type: 'Public', icon: <IoMdGlobe />, description: "Anyone can view, post, and comment to this community"},
+                            {type: 'Restricted', icon: <IoMdEye />, description: "Anyone can view, but only approved users can contribute"},
+                            {type: 'Private', icon: <CiLock />, description: "Only approved users can view and contribute"}];
 
 
     return(<div>

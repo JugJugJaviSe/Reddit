@@ -7,4 +7,5 @@ export interface CommunityDto{
     name: string;
     description: string;
     icon: File | null;
+    communityId?: number;
 }

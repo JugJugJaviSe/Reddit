@@ -3,7 +3,7 @@ import type { CommunityAPIResponse } from "../../types/community/CommunityAPIRes
 import type { ICommunityAPIService } from "./ICommunityAPIService";
 import axios from "axios";
 
-const API_URL: string = import.meta.env.VITE_API_URL + "category";
+const API_URL: string = import.meta.env.VITE_API_URL + "community";
 
 export const communityApi: ICommunityAPIService = {
     
@@ -13,14 +13,14 @@ export const communityApi: ICommunityAPIService = {
 
             const formData = new FormData();
 
-            formData.append("title", communityDto.name);
+            formData.append("name", communityDto.name);
             formData.append("description", communityDto.description);
-            formData.append("communityType", communityDto.communityType);
+            formData.append("status", communityDto.communityType);
             formData.append("isMature", communityDto.isMature.toString());
             formData.append("topics", JSON.stringify(communityDto.topics));
 
             if(communityDto.icon){
-            formData.append("icon", communityDto.icon);
+            formData.append("iconFile", communityDto.icon);
             }
             
             const res = await axios.post<CommunityAPIResponse>(`${API_URL}/create`, formData, {
